@@ -1,8 +1,14 @@
 import React from 'react';
 
+import SearchForm from '../Home/SearchForm';
+
 class Home extends React.Component {
   render() {
-    return <div>Home</div>;
+    return (
+      <>
+        <SearchForm />
+      </>
+    );
   }
 }
 
