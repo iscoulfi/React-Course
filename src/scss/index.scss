@@ -1,3 +1,6 @@
+@import './components/nav';
+@import './components/notfound';
+
 * {
   margin: 0;
   padding: 0;
@@ -21,4 +24,14 @@ img {
 html,
 body {
   height: 100%;
+}
+
+.app {
+  max-width: 1140px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin: 0 auto;
+  background-color: rgb(247, 247, 247);
 }

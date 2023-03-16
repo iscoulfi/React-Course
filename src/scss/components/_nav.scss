@@ -1,0 +1,29 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  height: 60px;
+  align-items: center;
+  background-color: rgb(225, 225, 225);
+
+  ul {
+    display: flex;
+    gap: 20px;
+    padding-left: 20px;
+
+    a {
+      font-weight: 400;
+      font-size: 18px;
+      line-height: 1.5;
+      color: #323232;
+
+      &:hover {
+        color: #ac4040;
+      }
+
+      &.active {
+        color: #ac4040;
+        font-weight: 700;
+      }
+    }
+  }
+}
