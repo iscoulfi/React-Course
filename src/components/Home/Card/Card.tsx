@@ -1,5 +1,5 @@
 import React from 'react';
-import { IProduct } from '../../assets/data';
+import { IProduct } from '../../../assets/data';
 
 class Card extends React.Component<IProduct> {
   render() {

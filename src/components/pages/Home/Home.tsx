@@ -1,7 +1,7 @@
 import React from 'react';
-import Card from '../Home/Card';
-import { products } from '../../assets/data';
-import SearchForm from '../Home/SearchForm';
+import Card from '../../Home/Card/Card';
+import { products } from '../../../assets/data';
+import SearchForm from '../../Home/SearchForm';
 
 class Home extends React.Component {
   render() {
