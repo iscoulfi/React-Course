@@ -13,6 +13,9 @@ class Navibar extends React.Component {
             <li>
               <NavLink to="about">About us</NavLink>
             </li>
+            <li>
+              <NavLink to="forms">Forms</NavLink>
+            </li>
           </ul>
         </nav>
       </header>
