@@ -4,12 +4,28 @@ import { FormProps, ICard } from '../../../types/formTypes';
 class Form extends React.Component<FormProps, ICard> {
   constructor(props: FormProps) {
     super(props);
-    this.state = { username: '', date: '', gender: '', image: '', checkbox: false, select: '' };
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  logInfo(e: React.FormEvent) {
+  nameRef = React.createRef<HTMLInputElement>();
+  birthRef = React.createRef<HTMLInputElement>();
+  genderRef1 = React.createRef<HTMLInputElement>();
+  genderRef2 = React.createRef<HTMLInputElement>();
+  imageRef = React.createRef<HTMLInputElement>();
+  checkboxRef = React.createRef<HTMLInputElement>();
+  selectRef = React.createRef<HTMLSelectElement>();
+
+  handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    console.log(this.state);
+    console.log(this.nameRef.current?.value);
+    console.log(this.birthRef.current?.value);
+    console.log(this.genderRef1.current?.checked);
+    console.log(this.genderRef2.current?.checked);
+    if (this.imageRef.current?.files) {
+      console.log(URL.createObjectURL(this.imageRef.current.files[0]));
+    }
+    console.log(this.checkboxRef.current?.checked);
+    console.log(this.selectRef.current?.value);
   }
 
   addCard() {
@@ -17,49 +33,48 @@ class Form extends React.Component<FormProps, ICard> {
   }
   render() {
     return (
-      <form onSubmit={(e) => this.logInfo(e)}>
+      <form onSubmit={this.handleSubmit}>
         <label>
           Username
           <br />
-          <input type="text" />
+          <input type="text" ref={this.nameRef} />
         </label>
         <br />
 
         <label>
           Birthday
           <br />
-          <input type="date" />
+          <input type="date" ref={this.birthRef} />
         </label>
         <br />
 
         <label>
-          <input type="radio" name="gender" />
+          <input type="radio" name="gender" ref={this.genderRef1} />
           Male
         </label>
         <label>
-          <input type="radio" name="gender" />
+          <input type="radio" name="gender" ref={this.genderRef2} />
           Female
         </label>
         <br />
 
         <label>
           Upload image
-          <input type="file" name="myImage" accept="image/*" />
+          <input type="file" name="myImage" accept="image/*" ref={this.imageRef} />
         </label>
         <br />
 
         <label>
-          <input type="checkbox" />I consent to my personal data
+          <input type="checkbox" ref={this.checkboxRef} />I consent to my personal data
         </label>
         <br />
 
         <label>
-          Choose a car:
-          <select name="cars">
-            <option value="volvo">Volvo</option>
-            <option value="saab">Saab</option>
-            <option value="mercedes">Mercedes</option>
-            <option value="audi">Audi</option>
+          Choose a country:
+          <select name="country" ref={this.selectRef}>
+            <option value="canada">Canada</option>
+            <option value="usa">USA</option>
+            <option value="china">China</option>
           </select>
         </label>
 

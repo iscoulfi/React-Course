@@ -11,4 +11,6 @@ export interface ICard {
 
 export type FormsState = { cards: ICard[] };
 
-export type FormProps = { refreshCards: (card: ICard) => void };
+export type FormProps = {
+  refreshCards: (card: ICard) => void;
+};
