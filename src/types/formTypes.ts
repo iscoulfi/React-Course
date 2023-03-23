@@ -14,3 +14,16 @@ export type FormsState = { cards: ICard[] };
 export type FormProps = {
   refreshCards: (card: ICard) => void;
 };
+
+export interface FormErrors {
+  nameError: string;
+  dateError: string;
+  genderError: string;
+  imageError: string;
+  checkboxError: string;
+  selectError: string;
+}
+
+export interface FormState {
+  errors: FormErrors;
+}
