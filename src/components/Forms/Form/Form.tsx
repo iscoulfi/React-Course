@@ -13,6 +13,7 @@ class Form extends React.Component<FormProps, FormState> {
     super(props);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.state = {
+      message: '',
       errors: {
         nameError: '',
         dateError: '',
@@ -45,6 +46,13 @@ class Form extends React.Component<FormProps, FormState> {
       if (this.imageRef.current?.files) {
         console.log(this.imageRef.current.value);
       }
+
+      this.setState({ message: 'Data has been saved' });
+
+      setTimeout(() => {
+        this.setState({ message: '' });
+      }, 2000);
+
       this.resetForm();
     }
   }
@@ -123,6 +131,8 @@ class Form extends React.Component<FormProps, FormState> {
         />
 
         <FormButtons />
+
+        {this.state.message ? <p>{this.state.message}</p> : ''}
       </form>
     );
   }

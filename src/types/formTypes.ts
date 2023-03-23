@@ -25,5 +25,6 @@ export interface FormErrors {
 }
 
 export interface FormState {
+  message: string;
   errors: FormErrors;
 }
