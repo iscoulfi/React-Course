@@ -14,6 +14,7 @@ class Form extends React.Component<FormProps, ICard> {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+  formRef = React.createRef<HTMLFormElement>();
   nameRef = React.createRef<HTMLInputElement>();
   birthRef = React.createRef<HTMLInputElement>();
   genderRef1 = React.createRef<HTMLInputElement>();
@@ -33,14 +34,19 @@ class Form extends React.Component<FormProps, ICard> {
     }
     console.log(this.checkboxRef.current?.checked);
     console.log(this.selectRef.current?.value);
+    this.resetForm();
   }
 
   addCard() {
     this.props.refreshCards({ ...this.state });
   }
+
+  resetForm() {
+    this.formRef.current?.reset();
+  }
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
+      <form onSubmit={this.handleSubmit} ref={this.formRef}>
         <TextInput nameRef={this.nameRef} />
         <DateInput birthRef={this.birthRef} />
         <RadioInput genderRef1={this.genderRef1} genderRef2={this.genderRef2} />
