@@ -1,5 +1,12 @@
 import React from 'react';
 import { FormProps, ICard } from '../../../types/formTypes';
+import CheckboxInput from './fields/CheckboxInput';
+import DateInput from './fields/DateInput';
+import FormButtons from './fields/FormButtons';
+import ImageInput from './fields/ImageInput';
+import RadioInput from './fields/RadioInput';
+import Select from './fields/Select';
+import TextInput from './fields/TextInput';
 
 class Form extends React.Component<FormProps, ICard> {
   constructor(props: FormProps) {
@@ -34,51 +41,13 @@ class Form extends React.Component<FormProps, ICard> {
   render() {
     return (
       <form onSubmit={this.handleSubmit}>
-        <label>
-          Username
-          <br />
-          <input type="text" ref={this.nameRef} />
-        </label>
-        <br />
-
-        <label>
-          Birthday
-          <br />
-          <input type="date" ref={this.birthRef} />
-        </label>
-        <br />
-
-        <label>
-          <input type="radio" name="gender" ref={this.genderRef1} />
-          Male
-        </label>
-        <label>
-          <input type="radio" name="gender" ref={this.genderRef2} />
-          Female
-        </label>
-        <br />
-
-        <label>
-          Upload image
-          <input type="file" name="myImage" accept="image/*" ref={this.imageRef} />
-        </label>
-        <br />
-
-        <label>
-          <input type="checkbox" ref={this.checkboxRef} />I consent to my personal data
-        </label>
-        <br />
-
-        <label>
-          Choose a country:
-          <select name="country" ref={this.selectRef}>
-            <option value="canada">Canada</option>
-            <option value="usa">USA</option>
-            <option value="china">China</option>
-          </select>
-        </label>
-
-        <input type="submit" value="Click me!" />
+        <TextInput nameRef={this.nameRef} />
+        <DateInput birthRef={this.birthRef} />
+        <RadioInput genderRef1={this.genderRef1} genderRef2={this.genderRef2} />
+        <ImageInput imageRef={this.imageRef} />
+        <CheckboxInput checkboxRef={this.checkboxRef} />
+        <Select selectRef={this.selectRef} />
+        <FormButtons />
       </form>
     );
   }
