@@ -1,12 +1,12 @@
 export type FormsProps = Record<string, never>;
 
 export interface ICard {
-  username: string;
-  date: string;
-  gender: string;
-  image: string;
-  checkbox: boolean;
-  select: string;
+  username?: string;
+  birthday?: string;
+  gender?: string;
+  image?: string;
+  agreement?: boolean;
+  language?: string;
 }
 
 export type FormsState = { cards: ICard[] };

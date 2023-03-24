@@ -7,7 +7,7 @@ class Select extends React.Component<SelectProps> {
     return (
       <div>
         <div>
-          <label>Choose a country:</label>
+          <label>Choose a language:</label>
           <select name="language" ref={this.props.selectRef}>
             <option value="" hidden>
               Choose

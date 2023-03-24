@@ -1,5 +1,5 @@
 import React from 'react';
-import { FormErrors, FormProps, FormState } from '../../../types/formTypes';
+import { FormErrors, FormProps, FormState, ICard } from '../../../types/formTypes';
 import CheckboxInput from './fields/CheckboxInput';
 import DateInput from './fields/DateInput';
 import FormButtons from './fields/FormButtons';
@@ -37,15 +37,19 @@ class Form extends React.Component<FormProps, FormState> {
   handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     if (this.validate()) {
-      console.log(this.nameRef.current?.value);
-      console.log(this.birthRef.current?.value);
-      console.log(this.genderRef1.current?.checked);
-      console.log(this.genderRef2.current?.checked);
-      console.log(this.checkboxRef.current?.checked);
-      console.log(this.selectRef.current?.value);
-      if (this.imageRef.current?.files) {
-        console.log(this.imageRef.current.value);
+      const cardInfo: ICard = {};
+      if (this.nameRef.current) cardInfo.username = this.nameRef.current.value;
+      if (this.birthRef.current) cardInfo.birthday = this.birthRef.current.value;
+      if (this.checkboxRef.current) cardInfo.agreement = this.checkboxRef.current.checked;
+      if (this.selectRef.current) cardInfo.language = this.selectRef.current.value;
+      if (this.genderRef1.current) {
+        cardInfo.gender = this.genderRef1.current.checked ? 'male' : 'female';
       }
+      if (this.imageRef.current?.files) {
+        cardInfo.image = URL.createObjectURL(this.imageRef.current.files[0]);
+      }
+
+      this.addCard(cardInfo);
 
       this.setState({ message: 'Data has been saved' });
 
@@ -103,7 +107,9 @@ class Form extends React.Component<FormProps, FormState> {
     return isValid;
   }
 
-  addCard() {}
+  addCard(card: ICard) {
+    this.props.refreshCards(card);
+  }
 
   resetForm() {
     this.formRef.current?.reset();
