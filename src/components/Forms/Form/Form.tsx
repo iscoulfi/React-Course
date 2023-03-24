@@ -79,7 +79,7 @@ class Form extends React.Component<FormProps, FormState> {
 
     if (!this.birthRef.current?.value) {
       isValid = false;
-      errors.dateError = 'Please enter your birthday';
+      errors.dateError = 'Please enter valid date';
     }
 
     if (!this.genderRef1.current?.checked && !this.genderRef2.current?.checked) {
@@ -116,7 +116,7 @@ class Form extends React.Component<FormProps, FormState> {
   }
   render() {
     return (
-      <form onSubmit={this.handleSubmit} ref={this.formRef}>
+      <form noValidate onSubmit={this.handleSubmit} ref={this.formRef}>
         <TextInput nameRef={this.nameRef} nameError={this.state.errors.nameError} />
 
         <DateInput birthRef={this.birthRef} dateError={this.state.errors.dateError} />
