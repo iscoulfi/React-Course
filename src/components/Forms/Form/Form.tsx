@@ -1,4 +1,5 @@
 import React from 'react';
+import { v4 as uuidv4 } from 'uuid';
 import { FormErrors, FormProps, FormState, ICard } from '../../../types/formTypes';
 import CheckboxInput from './fields/CheckboxInput';
 import DateInput from './fields/DateInput';
@@ -38,9 +39,11 @@ class Form extends React.Component<FormProps, FormState> {
     e.preventDefault();
     if (this.validate()) {
       const cardInfo: ICard = {};
+
+      cardInfo.id = uuidv4();
       if (this.nameRef.current) cardInfo.username = this.nameRef.current.value;
       if (this.birthRef.current) cardInfo.birthday = this.birthRef.current.value;
-      if (this.checkboxRef.current) cardInfo.agreement = this.checkboxRef.current.checked;
+      if (this.checkboxRef.current) cardInfo.agreement = 'agree';
       if (this.selectRef.current) cardInfo.language = this.selectRef.current.value;
       if (this.genderRef1.current) {
         cardInfo.gender = this.genderRef1.current.checked ? 'male' : 'female';
@@ -116,7 +119,7 @@ class Form extends React.Component<FormProps, FormState> {
   }
   render() {
     return (
-      <form noValidate onSubmit={this.handleSubmit} ref={this.formRef}>
+      <form noValidate className="form" onSubmit={this.handleSubmit} ref={this.formRef}>
         <TextInput nameRef={this.nameRef} nameError={this.state.errors.nameError} />
 
         <DateInput birthRef={this.birthRef} dateError={this.state.errors.dateError} />
@@ -138,7 +141,7 @@ class Form extends React.Component<FormProps, FormState> {
 
         <FormButtons />
 
-        {this.state.message ? <p>{this.state.message}</p> : ''}
+        {this.state.message ? <p>{this.state.message}</p> : <br />}
       </form>
     );
   }

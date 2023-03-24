@@ -17,7 +17,7 @@ class Forms extends React.Component<FormsProps, FormsState> {
     return (
       <div>
         <Form refreshCards={(card: ICard) => this.refreshCards(card)} />
-        <FormCards />
+        <FormCards cards={this.state.cards} />
       </div>
     );
   }

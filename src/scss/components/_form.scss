@@ -1,0 +1,18 @@
+.form {
+  .field {
+    padding: 10px 20px;
+    p {
+      color: #ff0000;
+    }
+  }
+  .field_input {
+    display: flex;
+    flex-direction: column;
+  }
+  .input {
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    padding: 5px 10px;
+    width: 200px;
+    border-radius: 3px;
+  }
+}

@@ -1,11 +1,12 @@
 export type FormsProps = Record<string, never>;
 
 export interface ICard {
+  id?: string;
   username?: string;
   birthday?: string;
   gender?: string;
   image?: string;
-  agreement?: boolean;
+  agreement?: string;
   language?: string;
 }
 
@@ -28,3 +29,5 @@ export interface FormState {
   message: string;
   errors: FormErrors;
 }
+
+export type FormCardsProps = FormsState;

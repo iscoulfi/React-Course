@@ -5,12 +5,17 @@ type TextInputProps = { nameRef: React.RefObject<HTMLInputElement>; nameError: s
 class TextInput extends React.Component<TextInputProps> {
   render() {
     return (
-      <div>
-        <div>
+      <div className="field">
+        <div className="field_input">
           <label>Username</label>
-          <input type="text" ref={this.props.nameRef} placeholder="Enter username..." />
+          <input
+            className="input"
+            type="text"
+            ref={this.props.nameRef}
+            placeholder="Enter username..."
+          />
         </div>
-        {this.props.nameError ? <p>{this.props.nameError}</p> : ''}
+        {this.props.nameError ? <p>{this.props.nameError}</p> : <br />}
       </div>
     );
   }
