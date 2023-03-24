@@ -5,10 +5,10 @@ type SelectProps = { selectRef: React.RefObject<HTMLSelectElement>; selectError:
 class Select extends React.Component<SelectProps> {
   render() {
     return (
-      <div>
-        <div>
-          <label>Choose a language:</label>
-          <select name="language" ref={this.props.selectRef}>
+      <div className="field">
+        <div className="field_input">
+          <label>Choose a language</label>
+          <select name="language" className="input" ref={this.props.selectRef}>
             <option value="" hidden>
               Choose
             </option>
@@ -17,7 +17,7 @@ class Select extends React.Component<SelectProps> {
             <option value="german">German</option>
           </select>
         </div>
-        {this.props.selectError ? <p>{this.props.selectError}</p> : ''}
+        {this.props.selectError ? <p>{this.props.selectError}</p> : <br />}
       </div>
     );
   }

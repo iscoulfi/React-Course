@@ -5,12 +5,12 @@ type DateInputProps = { birthRef: React.RefObject<HTMLInputElement>; dateError: 
 class DateInput extends React.Component<DateInputProps> {
   render() {
     return (
-      <div>
-        <div>
+      <div className="field">
+        <div className="field_input">
           <label>Birthday</label>
-          <input type="date" ref={this.props.birthRef} />
+          <input className="input" type="date" ref={this.props.birthRef} />
         </div>
-        {this.props.dateError ? <p>{this.props.dateError}</p> : ''}
+        {this.props.dateError ? <p>{this.props.dateError}</p> : <br />}
       </div>
     );
   }

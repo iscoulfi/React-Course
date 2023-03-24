@@ -141,7 +141,7 @@ class Form extends React.Component<FormProps, FormState> {
 
         <FormButtons />
 
-        {this.state.message ? <p>{this.state.message}</p> : <br />}
+        {this.state.message ? <p className="form_success">{this.state.message}</p> : <br />}
       </form>
     );
   }

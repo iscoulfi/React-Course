@@ -9,8 +9,8 @@ type RadioInputProps = {
 class RadioInput extends React.Component<RadioInputProps> {
   render() {
     return (
-      <div>
-        <div>
+      <div className="field">
+        <div className="field_flex">
           <div>
             <input type="radio" name="gender" ref={this.props.genderRef1} />
             <label> Male</label>
@@ -20,7 +20,7 @@ class RadioInput extends React.Component<RadioInputProps> {
             <label> Female</label>
           </div>
         </div>
-        {this.props.genderError ? <p>{this.props.genderError}</p> : ''}
+        {this.props.genderError ? <p>{this.props.genderError}</p> : <br />}
       </div>
     );
   }
