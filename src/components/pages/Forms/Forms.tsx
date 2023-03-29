@@ -1,26 +1,20 @@
-import React from 'react';
+import { useState } from 'react';
 import Form from '../../Forms/Form/Form';
 import FormCards from '../../Forms/FormCards/FormCards';
-import { FormsProps, ICard, FormsState } from '../../../types/formTypes';
+import { ICard, FormsState } from '../../../types/formTypes';
 
-class Forms extends React.Component<FormsProps, FormsState> {
-  constructor(props: FormsProps) {
-    super(props);
-    this.state = { cards: [] };
-  }
+const Forms = () => {
+  const [cards, setCards] = useState<FormsState | []>([]);
 
-  refreshCards(card: ICard) {
-    this.setState((prevState: FormsState) => ({ cards: [...prevState.cards, card] }));
-  }
-
-  render() {
-    return (
-      <div>
-        <Form refreshCards={(card: ICard) => this.refreshCards(card)} />
-        <FormCards cards={this.state.cards} />
-      </div>
-    );
-  }
-}
+  const refreshCards = (card: ICard) => {
+    setCards((cards: FormsState) => [...cards, card]);
+  };
+  return (
+    <div>
+      <Form refreshCards={(card: ICard) => refreshCards(card)} />
+      <FormCards cards={cards} />
+    </div>
+  );
+};
 
 export default Forms;

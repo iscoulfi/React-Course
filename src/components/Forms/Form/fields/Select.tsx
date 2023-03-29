@@ -1,26 +1,28 @@
-import React from 'react';
+import { FieldErrors, UseFormRegister } from 'react-hook-form/dist/types';
+import { Inputs } from '../../../../types/formTypes';
 
-type SelectProps = { selectRef: React.RefObject<HTMLSelectElement>; selectError: string };
+type SelectProps = { register: UseFormRegister<Inputs>; errors: FieldErrors<Inputs> };
 
-class Select extends React.Component<SelectProps> {
-  render() {
-    return (
-      <div className="field">
-        <div className="field_input">
-          <label>Choose a language</label>
-          <select name="language" className="input" ref={this.props.selectRef}>
-            <option value="" hidden>
-              Choose
-            </option>
-            <option value="english">English</option>
-            <option value="spanish">Spanish</option>
-            <option value="german">German</option>
-          </select>
-        </div>
-        {this.props.selectError ? <p>{this.props.selectError}</p> : <br />}
+const Select = ({ register, errors }: SelectProps) => {
+  return (
+    <div className="field">
+      <div className="field_input">
+        <label>Choose a language</label>
+        <select
+          className="input"
+          {...register('language', { required: 'Please choose your language' })}
+        >
+          <option value="" hidden>
+            Choose
+          </option>
+          <option value="english">English</option>
+          <option value="spanish">Spanish</option>
+          <option value="german">German</option>
+        </select>
       </div>
-    );
-  }
-}
+      {errors.language ? <p>{errors.language.message}</p> : <br />}
+    </div>
+  );
+};
 
 export default Select;

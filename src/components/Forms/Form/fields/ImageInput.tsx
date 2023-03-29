@@ -1,16 +1,19 @@
-import React from 'react';
+import { FieldErrors, UseFormRegister } from 'react-hook-form/dist/types';
+import { Inputs } from '../../../../types/formTypes';
 
-type ImageInputProps = { imageRef: React.RefObject<HTMLInputElement>; imageError: string };
+type ImageInputProps = { register: UseFormRegister<Inputs>; errors: FieldErrors<Inputs> };
 
-class ImageInput extends React.Component<ImageInputProps> {
-  render() {
-    return (
-      <div className="field field_input">
-        <input type="file" name="myImage" accept="image/*" ref={this.props.imageRef} />
-        {this.props.imageError ? <p>{this.props.imageError}</p> : <br />}
-      </div>
-    );
-  }
-}
+const ImageInput = ({ register, errors }: ImageInputProps) => {
+  return (
+    <div className="field field_input">
+      <input
+        type="file"
+        accept="image/*"
+        {...register('image', { required: 'Please upload an image' })}
+      />
+      {errors.image ? <p>{errors.image.message}</p> : <br />}
+    </div>
+  );
+};
 
 export default ImageInput;

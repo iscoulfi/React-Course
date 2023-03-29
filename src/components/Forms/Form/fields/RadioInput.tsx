@@ -1,29 +1,32 @@
-import React from 'react';
+import { FieldErrors, UseFormRegister } from 'react-hook-form/dist/types';
+import { Inputs } from '../../../../types/formTypes';
 
-type RadioInputProps = {
-  genderRef1: React.RefObject<HTMLInputElement>;
-  genderRef2: React.RefObject<HTMLInputElement>;
-  genderError: string;
-};
+type RadioInputProps = { register: UseFormRegister<Inputs>; errors: FieldErrors<Inputs> };
 
-class RadioInput extends React.Component<RadioInputProps> {
-  render() {
-    return (
-      <div className="field">
-        <div className="field_flex">
-          <div>
-            <input type="radio" name="gender" ref={this.props.genderRef1} />
-            <label> Male</label>
-          </div>
-          <div>
-            <input type="radio" name="gender" ref={this.props.genderRef2} />
-            <label> Female</label>
-          </div>
+const RadioInput = ({ register, errors }: RadioInputProps) => {
+  return (
+    <div className="field">
+      <div className="field_flex">
+        <div>
+          <input
+            type="radio"
+            value="male"
+            {...register('gender', { required: 'Please choose your gender' })}
+          />
+          <label> Male</label>
         </div>
-        {this.props.genderError ? <p>{this.props.genderError}</p> : <br />}
+        <div>
+          <input
+            type="radio"
+            value="female"
+            {...register('gender', { required: 'Please choose your gender' })}
+          />
+          <label> Female</label>
+        </div>
       </div>
-    );
-  }
-}
+      {errors.gender ? <p>{errors.gender.message}</p> : <br />}
+    </div>
+  );
+};
 
 export default RadioInput;
