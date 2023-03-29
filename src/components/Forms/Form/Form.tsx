@@ -22,13 +22,10 @@ const Form = ({ refreshCards }: FormProps) => {
 
   const onSubmit: SubmitHandler<Inputs> = (data) => {
     const cardInfo: ICard = {
+      ...data,
       id: uuidv4(),
-      username: data.username,
-      birthday: data.birthday,
-      gender: data.gender,
       image: URL.createObjectURL(data.image[0]),
       agreement: 'agree',
-      language: data.language,
     };
 
     addCard(cardInfo);
