@@ -4,7 +4,7 @@ import { AiOutlineSearch } from 'react-icons/ai';
 const SearchForm = () => {
   const [searchValue, setSearchValue] = useState(localStorage.getItem('searchValue') || '');
 
-  const inputValue = useRef('');
+  const inputValue = useRef(searchValue);
 
   useEffect(() => {
     return () => {
@@ -12,12 +12,9 @@ const SearchForm = () => {
     };
   }, []);
 
-  useEffect(() => {
-    inputValue.current = searchValue;
-  }, [searchValue]);
-
-  const handleChange = (event: React.FormEvent) => {
-    setSearchValue((event.target as HTMLInputElement).value);
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchValue(event.target.value);
+    inputValue.current = event.target.value;
   };
   return (
     <div className="root">

@@ -1,6 +1,6 @@
 import Card from '../../Home/Card/Card';
 import { products } from '../../../assets/data';
-import SearchForm from '../../Home/SearchForm';
+import SearchForm from '../../Home/SearchForm/SearchForm';
 
 const Home = () => {
   return (
