@@ -2,7 +2,7 @@ import { IProduct } from '../../../assets/data';
 
 const Card = (props: IProduct) => {
   return (
-    <div className="card">
+    <div className="card" data-testid="card">
       <img width={60} height={250} src={props.imageUrl} alt="Image" />
       <div>
         <h5>{props.title}</h5>

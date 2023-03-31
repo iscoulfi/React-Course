@@ -12,7 +12,9 @@ const Navibar = () => {
             <NavLink to="about">About us</NavLink>
           </li>
           <li>
-            <NavLink to="forms">Forms</NavLink>
+            <NavLink to="forms" data-testid="forms-link">
+              Forms
+            </NavLink>
           </li>
         </ul>
       </nav>

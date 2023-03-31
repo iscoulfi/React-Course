@@ -47,7 +47,7 @@ const Form = ({ refreshCards }: FormProps) => {
   };
 
   return (
-    <form noValidate className="form" onSubmit={handleSubmit(onSubmit)}>
+    <form noValidate className="form" onSubmit={handleSubmit(onSubmit)} data-testid="card-form">
       <TextInput register={register} errors={errors} />
 
       <DateInput register={register} errors={errors} />

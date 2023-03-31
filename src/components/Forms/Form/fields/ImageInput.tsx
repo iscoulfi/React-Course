@@ -9,6 +9,7 @@ const ImageInput = ({ register, errors }: ImageInputProps) => {
       <input
         type="file"
         accept="image/*"
+        data-testid="image-upload"
         {...register('image', { required: 'Please upload an image' })}
       />
       {errors.image ? <p>{errors.image.message}</p> : <br />}
