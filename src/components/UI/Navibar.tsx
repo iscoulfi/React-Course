@@ -1,6 +1,21 @@
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 
 const Navibar = () => {
+  const location = useLocation();
+  let currentPage = '';
+
+  switch (location.pathname) {
+    case '/':
+      currentPage = 'Home';
+      break;
+    case '/about':
+      currentPage = 'About us';
+      break;
+    case '/forms':
+      currentPage = 'Forms';
+      break;
+  }
+
   return (
     <header className="header">
       <nav className="header__menu">
@@ -18,6 +33,7 @@ const Navibar = () => {
           </li>
         </ul>
       </nav>
+      <p className="current">{`Current: ${currentPage}`}</p>
     </header>
   );
 };
