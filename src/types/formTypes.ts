@@ -25,6 +25,11 @@ export type Inputs = {
   agreement: boolean;
 };
 
-export type SearchInput = {
-  searchField: string;
-};
+export interface CardData {
+  id: number;
+  name: string;
+  gender: string;
+  species: string;
+  image: string;
+  status: string;
+}
