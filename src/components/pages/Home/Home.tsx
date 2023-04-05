@@ -12,11 +12,15 @@ const Home = () => {
   useEffect(() => {
     (async () => {
       try {
-        const { data } = await axios.get('https://rickandmortyapi.com/api/character');
+        setLoading(true);
+        const { data } = await axios.get(
+          `https://rickandmortyapi.com/api/character/?name=${searchValue}`
+        );
         setCards(data.results);
         setLoading(false);
       } catch (e) {
-        console.log(e);
+        setCards([]);
+        setLoading(false);
       }
     })();
   }, [searchValue]);
@@ -25,12 +29,18 @@ const Home = () => {
     <>
       <SearchForm searchValue={searchValue} setSearchValue={setSearchValue} />
       {loading ? (
-        <div className="loading">Loading...</div>
+        <div className="info">Loading...</div>
       ) : (
-        <div className="cards">
-          {cards.map((item) => (
-            <Card key={item.id} {...item} />
-          ))}
+        <div>
+          {cards.length > 0 ? (
+            <div className="cards">
+              {cards.map((item) => (
+                <Card key={item.id} {...item} />
+              ))}
+            </div>
+          ) : (
+            <div className="info">Characters not found!</div>
+          )}
         </div>
       )}
     </>
