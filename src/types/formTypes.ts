@@ -24,3 +24,7 @@ export type Inputs = {
   image: FileList;
   agreement: boolean;
 };
+
+export type SearchInput = {
+  searchField: string;
+};

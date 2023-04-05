@@ -1,31 +1,38 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect } from 'react';
+import { SubmitHandler, useForm } from 'react-hook-form';
 import { AiOutlineSearch } from 'react-icons/ai';
+import { SearchInput } from '../../../types/formTypes';
 
-const SearchForm = () => {
-  const [searchValue, setSearchValue] = useState(localStorage.getItem('searchValue') || '');
+interface SearchProps {
+  setSearchValue: React.Dispatch<React.SetStateAction<string>>;
+}
 
-  const inputValue = useRef(searchValue);
+const SearchForm = ({ setSearchValue }: SearchProps) => {
+  const { register, reset, handleSubmit } = useForm<SearchInput>();
 
   useEffect(() => {
-    return () => {
-      localStorage.setItem('searchValue', inputValue.current);
-    };
-  }, []);
+    reset({
+      searchField: localStorage.getItem('searchValue') || '',
+    });
+  }, [reset]);
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchValue(event.target.value);
-    inputValue.current = event.target.value;
+  const onSubmit: SubmitHandler<SearchInput> = (data) => {
+    localStorage.setItem('searchValue', data.searchField);
+    setSearchValue(data.searchField);
   };
+
   return (
     <div className="root">
-      <AiOutlineSearch className="icon" />
-      <input
-        className="input"
-        type="search"
-        value={searchValue}
-        onChange={handleChange}
-        placeholder="Search..."
-      />
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <input
+          className="input"
+          type="text"
+          placeholder="Search..."
+          autoComplete="off"
+          {...register('searchField')}
+        />
+        <AiOutlineSearch className="icon" onClick={handleSubmit(onSubmit)} />
+      </form>
     </div>
   );
 };
