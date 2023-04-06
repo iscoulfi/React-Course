@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react';
-import Card from '../../Home/Card/Card';
-import SearchForm from '../../Home/SearchForm/SearchForm';
 import axios from 'axios';
 import { CardData } from '../../../types/formTypes';
+import SearchForm from '../../Home/SearchForm/SearchForm';
+import Card from '../../Home/Card/Card';
+import Indicator from '../../Home/Indicator';
 
 const Home = () => {
   const [searchValue, setSearchValue] = useState(localStorage.getItem('searchValue') || '');
@@ -29,7 +30,7 @@ const Home = () => {
     <>
       <SearchForm searchValue={searchValue} setSearchValue={setSearchValue} />
       {loading ? (
-        <div className="info">Loading...</div>
+        <Indicator />
       ) : (
         <div>
           {cards.length > 0 ? (
