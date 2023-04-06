@@ -11,7 +11,7 @@ const Card = (props: CardData) => {
           <p>{props.name}</p>
         </div>
       </div>
-      <Modal openModal={openModal} setOpenModal={setOpenModal} data={props} />
+      <Modal openModal={openModal} setOpenModal={setOpenModal} id={props.id} />
     </div>
   );
 };
