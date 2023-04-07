@@ -20,7 +20,6 @@ const Modal = ({ openModal, setOpenModal, id }: ModalProps) => {
         try {
           const { data } = await axios.get(`https://rickandmortyapi.com/api/character/${id}`);
           setCard(data);
-          console.log(data);
           setLoading(false);
         } catch (e) {
           console.log(e);
