@@ -9,7 +9,7 @@ describe('App', () => {
         <App />
       </MemoryRouter>
     );
-    expect(screen.getByRole('searchbox')).toBeInTheDocument();
+    expect(screen.getByRole('textbox')).toBeInTheDocument();
   });
 
   it('shows working links', () => {
