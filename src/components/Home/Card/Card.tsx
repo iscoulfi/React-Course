@@ -8,7 +8,7 @@ const Card = (props: CardData) => {
       <div className="card" data-testid="card" onClick={() => setOpenModal(true)}>
         <img height={200} src={props.image} alt="Image" />
         <div className="person">
-          <p>{props.name}</p>
+          <p data-testid="character-name">{props.name}</p>
         </div>
       </div>
       <Modal openModal={openModal} setOpenModal={setOpenModal} id={props.id} />

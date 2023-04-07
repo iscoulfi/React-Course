@@ -1,8 +1,14 @@
 import { render, screen } from '@testing-library/react';
 import Card from './Card';
-import { products } from '../../../assets/data';
 
-const item = products[0];
+const item = {
+  id: 3,
+  name: 'Summer Smith',
+  status: 'Alive',
+  species: 'Human',
+  gender: 'Female',
+  image: 'https://rickandmortyapi.com/api/character/avatar/3.jpeg',
+};
 
 describe('Card', () => {
   beforeEach(() => {
@@ -13,7 +19,11 @@ describe('Card', () => {
     expect(screen.getByTestId('card')).toBeInTheDocument();
   });
 
-  it('has price field', () => {
-    expect(screen.getByText(/price/i)).toBeInTheDocument();
+  it('has name field', () => {
+    expect(screen.getByText(item.name)).toBeInTheDocument();
+  });
+
+  it('has image', () => {
+    expect(screen.getByRole('img')).toHaveAttribute('src', item.image);
   });
 });
