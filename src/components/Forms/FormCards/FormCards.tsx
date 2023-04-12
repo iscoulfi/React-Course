@@ -1,7 +1,8 @@
-import { FormCardsProps } from '../../../types/formTypes';
+import { useAppSelector } from '../../../redux/store';
 import FormCard from './FormCard/FormCard';
 
-const FormCards = ({ cards }: FormCardsProps) => {
+const FormCards = () => {
+  const { cards } = useAppSelector((state) => state.form);
   return (
     <div className="cards">
       {cards.map((card) => (

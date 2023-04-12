@@ -8,14 +8,6 @@ export interface ICard {
   language: string;
 }
 
-export type FormsState = ICard[];
-
-export type FormProps = {
-  refreshCards: (card: ICard) => void;
-};
-
-export type FormCardsProps = { cards: FormsState };
-
 export type Inputs = {
   username: string;
   birthday: string;

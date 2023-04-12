@@ -1,7 +1,9 @@
 import { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import { useForm, SubmitHandler } from 'react-hook-form';
-import { FormProps, ICard, Inputs } from '../../../types/formTypes';
+import { useAppDispatch } from '../../../redux/store';
+import { ICard, Inputs } from '../../../types/formTypes';
+import { refreshCards } from '../../../redux/slices/form/slice';
 import CheckboxInput from './fields/CheckboxInput';
 import DateInput from './fields/DateInput';
 import FormButtons from './fields/FormButtons';
@@ -10,8 +12,9 @@ import RadioInput from './fields/RadioInput';
 import Select from './fields/Select';
 import TextInput from './fields/TextInput';
 
-const Form = ({ refreshCards }: FormProps) => {
+const Form = () => {
   const [message, setMessage] = useState('');
+  const dispatch = useAppDispatch();
 
   const {
     register,
@@ -36,7 +39,7 @@ const Form = ({ refreshCards }: FormProps) => {
   };
 
   const addCard = (card: ICard) => {
-    refreshCards(card);
+    dispatch(refreshCards(card));
   };
 
   const displayMessage = () => {
