@@ -7,7 +7,8 @@ const initialState: SearchState = {
   searchValue: '',
   cards: [],
   card: null,
-  status: Status.IDLE,
+  statusCards: Status.IDLE,
+  statusCard: Status.IDLE,
 };
 
 export const searchSlice = createSlice({
@@ -21,25 +22,26 @@ export const searchSlice = createSlice({
 
   extraReducers: (builder) => {
     builder.addCase(getCharactersByQuery.pending, (state) => {
-      state.status = Status.LOADING;
+      state.statusCards = Status.LOADING;
     });
     builder.addCase(getCharactersByQuery.fulfilled, (state, action) => {
-      state.status = Status.SUCCESS;
+      state.statusCards = Status.SUCCESS;
       if (action.payload) state.cards = action.payload;
     });
     builder.addCase(getCharactersByQuery.rejected, (state) => {
-      state.status = Status.ERROR;
+      state.statusCards = Status.ERROR;
+      state.cards = [];
     });
 
     builder.addCase(getCharacter.pending, (state) => {
-      state.status = Status.LOADING;
+      state.statusCard = Status.LOADING;
     });
     builder.addCase(getCharacter.fulfilled, (state, action) => {
-      state.status = Status.SUCCESS;
+      state.statusCard = Status.SUCCESS;
       if (action.payload) state.card = action.payload;
     });
     builder.addCase(getCharacter.rejected, (state) => {
-      state.status = Status.ERROR;
+      state.statusCard = Status.ERROR;
     });
   },
 });

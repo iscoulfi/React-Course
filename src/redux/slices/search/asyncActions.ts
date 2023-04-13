@@ -1,17 +1,18 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { CardData } from '../../../types/formTypes';
+import { QueryCharactersData } from './types';
 
 export const getCharactersByQuery = createAsyncThunk(
   'search/getCharactersByQuery',
   async (searchValue: string) => {
     try {
-      const { data } = await axios.get<CardData[]>(
+      const { data } = await axios.get<QueryCharactersData>(
         `https://rickandmortyapi.com/api/character/?name=${searchValue}`
       );
-      return data;
+      return data.results;
     } catch (error) {
-      console.log(error);
+      throw error;
     }
   }
 );
@@ -21,6 +22,6 @@ export const getCharacter = createAsyncThunk('comment/getCharacter', async (id: 
     const { data } = await axios.get<CardData>(`https://rickandmortyapi.com/api/character/${id}`);
     return data;
   } catch (error) {
-    console.log(error);
+    console.log('Character not found!');
   }
 });

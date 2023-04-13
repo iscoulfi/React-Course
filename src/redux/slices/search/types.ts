@@ -11,5 +11,10 @@ export interface SearchState {
   searchValue: string;
   cards: CardData[] | [];
   card: CardData | null;
-  status: Status;
+  statusCards: Status;
+  statusCard: Status;
+}
+
+export interface QueryCharactersData extends CardData {
+  results: CardData[];
 }

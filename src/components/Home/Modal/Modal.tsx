@@ -1,8 +1,8 @@
-import { useState, useEffect } from 'react';
-import axios from 'axios';
+import { useEffect } from 'react';
 import { RxCrossCircled } from 'react-icons/rx';
 import Indicator from '../Indicator';
-import { CardData } from '../../../types/formTypes';
+import { useAppDispatch, useAppSelector } from '../../../redux/store';
+import { getCharacter } from '../../../redux/slices/search/asyncActions';
 
 interface ModalProps {
   openModal: boolean;
@@ -11,28 +11,19 @@ interface ModalProps {
 }
 
 const Modal = ({ openModal, setOpenModal, id }: ModalProps) => {
-  const [card, setCard] = useState<CardData | null>(null);
-  const [loading, setLoading] = useState(true);
+  const dispatch = useAppDispatch();
+  const { card, statusCard } = useAppSelector((state) => state.search);
 
   useEffect(() => {
-    if (openModal)
-      (async () => {
-        try {
-          const { data } = await axios.get(`https://rickandmortyapi.com/api/character/${id}`);
-          setCard(data);
-          setLoading(false);
-        } catch (e) {
-          console.log(e);
-        }
-      })();
-  }, [id, openModal]);
+    if (openModal) dispatch(getCharacter(id));
+  }, [id, openModal, dispatch]);
 
   if (!openModal) return null;
   return (
     <div className="overlay" onClick={() => setOpenModal(false)}>
       <div className="content" onClick={(e) => e.stopPropagation()}>
         <RxCrossCircled className="closeBtn" onClick={() => setOpenModal(false)} />
-        {loading ? (
+        {statusCard === 'loading' ? (
           <Indicator />
         ) : (
           <div className="data">

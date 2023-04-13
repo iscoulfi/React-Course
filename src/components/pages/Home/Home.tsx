@@ -1,36 +1,22 @@
-import { useState, useEffect } from 'react';
-import axios from 'axios';
-import { useAppSelector } from '../../../redux/store';
-import { CardData } from '../../../types/formTypes';
+import { useEffect } from 'react';
+import { useAppSelector, useAppDispatch } from '../../../redux/store';
 import SearchForm from '../../Home/SearchForm/SearchForm';
 import Card from '../../Home/Card/Card';
 import Indicator from '../../Home/Indicator';
+import { getCharactersByQuery } from '../../../redux/slices/search/asyncActions';
 
 const Home = () => {
-  const { searchValue } = useAppSelector((state) => state.search);
-  const [cards, setCards] = useState<CardData[] | []>([]);
-  const [loading, setLoading] = useState(true);
+  const { searchValue, cards, statusCards } = useAppSelector((state) => state.search);
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
-    (async () => {
-      try {
-        setLoading(true);
-        const { data } = await axios.get(
-          `https://rickandmortyapi.com/api/character/?name=${searchValue}`
-        );
-        setCards(data.results);
-        setLoading(false);
-      } catch (e) {
-        setCards([]);
-        setLoading(false);
-      }
-    })();
-  }, [searchValue]);
+    dispatch(getCharactersByQuery(searchValue));
+  }, [searchValue, dispatch]);
 
   return (
     <>
       <SearchForm />
-      {loading ? (
+      {statusCards === 'loading' ? (
         <Indicator />
       ) : (
         <div>
