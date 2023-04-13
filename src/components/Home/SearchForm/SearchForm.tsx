@@ -1,18 +1,17 @@
 import { useState } from 'react';
 import { AiOutlineSearch } from 'react-icons/ai';
+import { useAppSelector } from '../../../redux/store';
+import { useAppDispatch } from '../../../redux/store';
+import { setSearchValue } from '../../../redux/slices/search/slice';
 
-interface SearchProps {
-  searchValue: string;
-  setSearchValue: React.Dispatch<React.SetStateAction<string>>;
-}
-
-const SearchForm = ({ searchValue, setSearchValue }: SearchProps) => {
+const SearchForm = () => {
+  const { searchValue } = useAppSelector((state) => state.search);
+  const dispatch = useAppDispatch();
   const [value, setValue] = useState(searchValue);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    localStorage.setItem('searchValue', value);
-    setSearchValue(value);
+    dispatch(setSearchValue(value));
   };
 
   return (
