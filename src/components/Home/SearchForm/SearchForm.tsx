@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { AiOutlineSearch } from 'react-icons/ai';
-import { useAppSelector } from '../../../redux/store';
-import { useAppDispatch } from '../../../redux/store';
+import { useAppSelector, useAppDispatch } from '../../../redux/store';
 import { setSearchValue } from '../../../redux/slices/search/slice';
 
 const SearchForm = () => {

@@ -1,4 +1,6 @@
 import { render } from '@testing-library/react';
+import { vi } from 'vitest';
+import * as hooks from '../../../redux/store';
 import FormCards from './FormCards';
 
 const cards = [
@@ -15,7 +17,8 @@ const cards = [
 
 describe('<FormCards/>', () => {
   it('FormCards mounts properly', () => {
-    const wrapper = render(<FormCards cards={cards} />);
+    vi.spyOn(hooks, 'useAppSelector').mockReturnValue({ cards });
+    const wrapper = render(<FormCards />);
     expect(wrapper).toBeTruthy();
   });
 });

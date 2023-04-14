@@ -2,10 +2,15 @@ import { vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import Form from './Form';
+import * as hooks from '../../../redux/store';
+
+const mockedDispatch = vi.spyOn(hooks, 'useAppDispatch');
 
 describe('Form', () => {
   beforeEach(() => {
-    render(<Form refreshCards={vi.fn} />);
+    const dispatch = vi.fn();
+    mockedDispatch.mockResolvedValue(dispatch);
+    render(<Form />);
   });
 
   it('shows text form mounts properly', () => {

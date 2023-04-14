@@ -1,5 +1,9 @@
 import { render, screen } from '@testing-library/react';
 import Card from './Card';
+import { vi } from 'vitest';
+import * as hooks from '../../../redux/store';
+
+const mockedDispatch = vi.spyOn(hooks, 'useAppDispatch');
 
 const item = {
   id: 3,
@@ -12,6 +16,9 @@ const item = {
 
 describe('Card', () => {
   beforeEach(() => {
+    const dispatch = vi.fn();
+    mockedDispatch.mockResolvedValue(dispatch);
+    vi.spyOn(hooks, 'useAppSelector').mockReturnValue('');
     render(<Card {...item} />);
   });
 

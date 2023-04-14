@@ -1,10 +1,16 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import SearchForm from './SearchForm';
 import { vi } from 'vitest';
+import * as hooks from '../../../redux/store';
+
+const mockedDispatch = vi.spyOn(hooks, 'useAppDispatch');
 
 describe('SearchForm', () => {
   beforeEach(() => {
-    render(<SearchForm searchValue={'rick'} setSearchValue={vi.fn()} />);
+    const dispatch = vi.fn();
+    mockedDispatch.mockResolvedValue(dispatch);
+    vi.spyOn(hooks, 'useAppSelector').mockReturnValue('');
+    render(<SearchForm />);
   });
 
   it('renders search input', () => {
