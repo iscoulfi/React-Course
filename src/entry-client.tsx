@@ -1,17 +1,18 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';
-import App from './App';
+import { hydrateRoot } from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
+import App from './App';
 import './scss/index.scss';
 import { store } from './redux/store';
 import { Provider } from 'react-redux';
 
-ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
+hydrateRoot(
+  document.getElementById('root') as HTMLElement,
   <React.StrictMode>
-    <BrowserRouter>
-      <Provider store={store}>
+    <Provider store={store}>
+      <BrowserRouter>
         <App />
-      </Provider>
-    </BrowserRouter>
+      </BrowserRouter>
+    </Provider>
   </React.StrictMode>
 );

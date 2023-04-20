@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { AiOutlineSearch } from 'react-icons/ai';
 import { useAppSelector, useAppDispatch } from '../../../redux/store';
 import { setSearchValue } from '../../../redux/slices/search/slice';
 
@@ -24,7 +23,7 @@ const SearchForm = () => {
           value={value}
           onChange={(e) => setValue(e.target.value)}
         />
-        <AiOutlineSearch className="icon" onClick={handleSubmit} />
+        <img className="icon" src="img/search.svg" alt="search" onClick={handleSubmit} />
       </form>
     </div>
   );
