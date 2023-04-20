@@ -1,0 +1,49 @@
+.overlay {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.8);
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+
+  .content {
+    position: absolute;
+    padding: 25px;
+    border-radius: 12px;
+    background-color: #ffffff;
+    max-width: 800px;
+
+    .closeBtn {
+      position: absolute;
+      width: 25px;
+      height: 25px;
+      top: 7px;
+      right: 7px;
+    }
+
+    .data {
+      display: flex;
+      justify-content: space-around;
+
+      img {
+        width: 200px;
+
+        padding-right: 20px;
+      }
+
+      span {
+        font-size: 13px;
+        opacity: 0.5;
+        text-transform: uppercase;
+      }
+
+      b {
+        font-size: 14px;
+      }
+    }
+  }
+}
