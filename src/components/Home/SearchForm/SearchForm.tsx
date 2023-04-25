@@ -17,6 +17,7 @@ const SearchForm = () => {
       <form onSubmit={handleSubmit}>
         <input
           className="input"
+          data-cy="search"
           type="text"
           placeholder="Search..."
           autoComplete="off"
