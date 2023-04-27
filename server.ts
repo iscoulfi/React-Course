@@ -29,12 +29,12 @@ async function createServer() {
     const { render } = await vite.ssrLoadModule('/src/entry-server.tsx');
 
     res.write(parts[0]);
-    const stream = render(url, {
+    const { stream, initialCards } = await render(url, {
       onShellReady() {
         stream.pipe(res);
       },
       onAllReady() {
-        res.write(parts[1]);
+        res.write(parts[1].replace('<!--preload-state-->', initialCards()));
         res.end();
       },
       onError(err: Error) {
