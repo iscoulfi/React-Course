@@ -2,7 +2,9 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import App from './App';
 import { Provider } from 'react-redux';
-import { store } from './redux/store';
+import { setupStore } from './redux/store';
+
+const store = setupStore();
 
 describe('App', () => {
   it('renders main page', () => {

@@ -2,8 +2,10 @@ import { render } from '@testing-library/react';
 import Home from './Home';
 import { vi } from 'vitest';
 import { getCharactersByQuery } from '../../../redux/slices/search/asyncActions';
-import { store } from '../../../redux/store';
+import { setupStore } from '../../../redux/store';
 import { Provider } from 'react-redux';
+
+const store = setupStore();
 
 const mockCards = [
   {

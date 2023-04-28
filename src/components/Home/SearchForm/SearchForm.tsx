@@ -24,7 +24,13 @@ const SearchForm = () => {
           value={value}
           onChange={(e) => setValue(e.target.value)}
         />
-        <img className="icon" src="img/search.svg" alt="search" onClick={handleSubmit} />
+        <img
+          className="icon"
+          src="img/search.svg"
+          alt="search"
+          data-cy="search-btn"
+          onClick={handleSubmit}
+        />
       </form>
     </div>
   );
