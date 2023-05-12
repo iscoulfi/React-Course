@@ -11,6 +11,7 @@ const RadioInput = ({ register, errors }: RadioInputProps) => {
           <input
             type="radio"
             value="male"
+            data-cy="radio-male"
             {...register('gender', { required: 'Please choose your gender' })}
           />
           <label> Male</label>

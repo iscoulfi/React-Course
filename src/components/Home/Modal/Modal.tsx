@@ -1,5 +1,4 @@
 import { useEffect } from 'react';
-import { RxCrossCircled } from 'react-icons/rx';
 import Indicator from '../Indicator';
 import { useAppDispatch, useAppSelector } from '../../../redux/store';
 import { getCharacter } from '../../../redux/slices/search/asyncActions';
@@ -22,7 +21,13 @@ const Modal = ({ openModal, setOpenModal, id }: ModalProps) => {
   return (
     <div className="overlay" onClick={() => setOpenModal(false)}>
       <div className="content" onClick={(e) => e.stopPropagation()}>
-        <RxCrossCircled className="closeBtn" onClick={() => setOpenModal(false)} />
+        <img
+          className="closeBtn"
+          src="img/cross.svg"
+          alt="cross"
+          onClick={() => setOpenModal(false)}
+        />
+
         {statusCard === 'loading' ? (
           <Indicator />
         ) : (
